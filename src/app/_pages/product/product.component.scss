@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    .image-product, .image-infos {
+        flex: 1;
+    }
+}
+
+.error h1{
+    color: red;
+}

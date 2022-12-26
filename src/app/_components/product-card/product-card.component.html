@@ -1,0 +1,5 @@
+<div id="first_pro" class="one" *ngIf="product">
+    <div class="img" id="img1" [ngStyle]="{'background-image': 'url(' + product.thumbnail + ')'}"><span class="sale_tag">Sale!</span><span class="like_btn"><i
+          class="fa-regular fa-heart"></i></span></div>
+    <p class="caption_">{{ product.title }} <br><span class="new">{{ product.price|currency:'EUR':'symbol' }}</span></p>
+  </div>
