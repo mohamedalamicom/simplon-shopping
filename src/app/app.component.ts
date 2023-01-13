@@ -8,5 +8,4 @@ import { Product } from './_models/Product';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  
 }

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
 import { Product } from 'src/app/_models/Product';
+import { ProductService } from 'src/app/_services/products.service';
 
 @Component({
   selector: 'app-home',
@@ -8,20 +10,20 @@ import { Product } from 'src/app/_models/Product';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  products!: Product[];
-  err!: string;
 
-  constructor(private httpClient: HttpClient) { }
+  products!: Product[]; // les produits affichés
+  err!: string;
+  
+  subject: ReplaySubject<number> = new ReplaySubject<number>(5);
+
+  constructor(private productService:ProductService) { }
 
   ngOnInit() { 
-    this.httpClient.get<any>('https://dummyjson.com/products?limit=5&skip=5').subscribe(
-      (resultats) => {
-        this.products = resultats.products;
-       },
-      (e) => {
-        this.err = e.error.message;
-      },
-    );
+    this.productService.products$.subscribe(products => {
+      console.log('REPONSE DEPUIS OBSERVER ', products)
+      this.products = products
+    });
+    this.productService.getProducts();
   }
 
 }

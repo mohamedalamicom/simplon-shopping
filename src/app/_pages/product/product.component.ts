@@ -17,7 +17,7 @@ export class ProductComponent implements OnInit {
     }
 
     ngOnInit(): void {
-      this.httpClient.get<Product>('https://dummyjson.com/products/' + this.id)
+      this.httpClient.get<Product>('/products/' + this.id)
         .subscribe(product => this.product = product)
     }
 
